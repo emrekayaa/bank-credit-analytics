@@ -174,3 +174,104 @@ LEFT JOIN buro_musterileri b
     ON a.sk_id_curr = b.sk_id_curr
 GROUP BY 1
 ORDER BY 1;
+
+-- =====================================================================
+-- 9. Büro segmentlerinin profil karşılaştırması
+-- Soru: Kayıtsız segmentin yüksek temerrüdü (bkz. 8) yaş/gelir
+--       farkından mı kaynaklanıyor? Banka bu segmente farklı limit
+--       veriyor mu?
+-- Bulgu:
+--                    Yaş    Gelir     Kredi    Kredi/Gelir
+--   Büro kaydı var   44,1   171.402   606.403  3,95
+--   Büro kaydı yok   42,9   153.212   554.872  4,03
+--   - Fark küçük: kayıtsızlar ~1 yaş genç, geliri ~%11, kredisi ~%8 düşük.
+--     Bu fark 1,3 katlık risk farkını tek başına açıklamıyor gibi;
+--     büro kaydının yokluğu kendi başına bir risk sinyali olabilir.
+--     (Kesin test: data science bölümünde çok değişkenli model.)
+--   - Fiyatlama sorusu: riskli segmentin kredi/gelir oranı daha düşük
+--     değil, hatta biraz yüksek. Banka limitte risk ayrımı yapmıyor
+--     görünüyor. Faiz oranı görünmediği için kesin değil; kredi politikası
+--     açısından incelenmeli.
+--   - Uyarı: gelir sağa çarpık ve uç değerli. Ortalama yerine medyanla
+--     tekrar kontrol edilmeli.
+-- =====================================================================
+WITH buro_musterileri AS (
+    SELECT DISTINCT sk_id_curr
+    FROM raw.bureau
+)
+SELECT
+    CASE
+        WHEN b.sk_id_curr IS NULL THEN 'Büro kaydı yok'
+        ELSE 'Büro kaydı var'
+    END                                                 AS segment,
+    COUNT(*)                                            AS musteri_sayisi,
+    ROUND(AVG(-a.days_birth::int / 365.0), 1)           AS ort_yas,
+    ROUND(AVG(a.amt_income_total::numeric), 0)          AS ort_gelir,
+    ROUND(AVG(a.amt_credit::numeric), 0)                AS ort_kredi,
+    ROUND(AVG(a.amt_credit::numeric
+              / a.amt_income_total::numeric), 2)        AS kredi_gelir_orani
+FROM raw.application_train a
+LEFT JOIN buro_musterileri b
+    ON a.sk_id_curr = b.sk_id_curr
+GROUP BY 1
+ORDER BY 1;
+
+-- =====================================================================
+-- 10. Home Credit içi geçmiş tabloların grain kontrolü
+-- Soru: pos_cash_balance, credit_card_balance ve installments_payments
+--       tablolarında bir satır neyi temsil ediyor?
+-- Bulgu:
+--   Tablo                   Satır    Kredi    Müşteri  Kredi başına satır
+--   pos_cash_balance        10,0 M   936 bin  337 bin  10,7
+--   credit_card_balance      3,8 M   104 bin  104 bin  36,8
+--   installments_payments   13,6 M   998 bin  340 bin  13,6
+--
+--   - Grain:
+--       * pos_cash_balance      → 1 kredinin 1 ayı (months_balance)
+--       * credit_card_balance   → 1 kartın 1 ayı (months_balance)
+--       * installments_payments → 1 ödeme hareketi (bir taksit parça
+--         parça ödendiyse birden fazla satır olur)
+--   - Gecikme analizi installments_payments'tan yapılacak: ödenmesi
+--     gereken gün ile ödendiği gün bu tabloda.
+--   - Kart penetrasyonu düşük: ~356 bin müşterinin ~%29'unun kartı var,
+--     kartı olanın genelde tek kartı var. Cross-sell fırsatı.
+--   - Kart ortalama 37 ay, POS kredisi 11 ay izleniyor: kart döner ürün,
+--     kredi vadesi dolunca kapanıyor.
+--   - previous_application'da 1,67 M başvuru var, bu tablolarda en fazla
+--     ~1 M kredi. Fark = reddedilen/iptal edilen başvurular (hiç
+--     kullandırılmadı). Onay oranı metriği buradan çıkacak.
+--
+-- Veri modeli (tüm tablolar):
+--   application_train            1 satır = 1 müşteri        (sk_id_curr)
+--   ├── bureau                   başka kurumdaki 1 kredi     (sk_id_bureau)
+--   │   └── bureau_balance       o kredinin 1 ayı
+--   └── previous_application     Home Credit'e 1 önceki başvuru (sk_id_prev)
+--       ├── pos_cash_balance       o kredinin 1 ayı
+--       ├── credit_card_balance    o kartın 1 ayı
+--       └── installments_payments  o kredinin 1 ödemesi
+--   Kural: alt tablolar üst tabloya join edilmeden önce özetlenir.
+-- =====================================================================
+
+-- 10a. POS ve nakit krediler
+SELECT
+    COUNT(*)                                                 AS toplam_satir,
+    COUNT(DISTINCT sk_id_prev)                               AS benzersiz_kredi,
+    COUNT(DISTINCT sk_id_curr)                               AS benzersiz_musteri,
+    ROUND(COUNT(*)::numeric / COUNT(DISTINCT sk_id_prev), 1) AS kredi_basina_satir
+FROM raw.pos_cash_balance;
+
+-- 10b. Kredi kartları
+SELECT
+    COUNT(*)                                                 AS toplam_satir,
+    COUNT(DISTINCT sk_id_prev)                               AS benzersiz_kredi,
+    COUNT(DISTINCT sk_id_curr)                               AS benzersiz_musteri,
+    ROUND(COUNT(*)::numeric / COUNT(DISTINCT sk_id_prev), 1) AS kredi_basina_satir
+FROM raw.credit_card_balance;
+
+-- 10c. Taksit ödemeleri
+SELECT
+    COUNT(*)                                                 AS toplam_satir,
+    COUNT(DISTINCT sk_id_prev)                               AS benzersiz_kredi,
+    COUNT(DISTINCT sk_id_curr)                               AS benzersiz_musteri,
+    ROUND(COUNT(*)::numeric / COUNT(DISTINCT sk_id_prev), 1) AS kredi_basina_satir
+FROM raw.installments_payments;
