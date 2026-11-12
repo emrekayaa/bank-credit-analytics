@@ -275,3 +275,66 @@ SELECT
     COUNT(DISTINCT sk_id_curr)                               AS benzersiz_musteri,
     ROUND(COUNT(*)::numeric / COUNT(DISTINCT sk_id_prev), 1) AS kredi_basina_satir
 FROM raw.installments_payments;
+-- =====================================================================
+-- 11. application_train tip profili (staging kararları için)
+-- Amaç: 122 sütunun hedef tiplerini belirlemek ve dönüşümde sorun
+--       çıkaracak değerleri önceden bulmak.
+-- =====================================================================
+
+-- 11a. Sütunları öneke göre grupla
+-- Bulgu: Önek, sütun türünü büyük ölçüde gösteriyor (amt_, days_, flag_,
+--        name_ ...). 122 tip kararı ~15 grup kararına indi.
+--   - İstisnalar: amt_req_credit_bureau_* tutar değil, sorgu ADEDİ (int).
+--     fondkapremont/housetype/wallsmaterial/emergencystate_mode sayı
+--     değil, KATEGORİ (text). Önek kuralına kör güvenilmemeli.
+SELECT
+    SPLIT_PART(column_name, '_', 1)                          AS onek,
+    COUNT(*)                                                 AS sutun_sayisi,
+    STRING_AGG(column_name, ', ' ORDER BY ordinal_position)  AS sutunlar
+FROM information_schema.columns
+WHERE table_schema = 'raw'
+  AND table_name   = 'application_train'
+GROUP BY 1
+ORDER BY 2 DESC;
+
+-- 11b. Bayrak ve cinsiyet değerleri
+-- Bulgu: flag_own_car ve flag_own_realty 0/1 değil Y/N → CASE ile 0/1.
+--        code_gender: F 202.448, M 105.059, XNA 4 → XNA NULL yapılacak.
+SELECT 'flag_own_car' AS sutun, flag_own_car AS deger, COUNT(*) FROM raw.application_train GROUP BY 2
+UNION ALL
+SELECT 'flag_own_realty', flag_own_realty, COUNT(*) FROM raw.application_train GROUP BY 2
+UNION ALL
+SELECT 'code_gender', code_gender, COUNT(*) FROM raw.application_train GROUP BY 2
+ORDER BY 1, 2;
+
+-- 11c. Tam sayıların yazım biçimi
+-- Bulgu: Tam sayılar ondalıklı yazılmış ('1.0', '-4260.0').
+--        Postgres'te '1.0'::int HATA verir → ::numeric::int kullanılacak.
+SELECT cnt_fam_members, days_registration, amt_req_credit_bureau_year, own_car_age
+FROM raw.application_train
+WHERE own_car_age IS NOT NULL
+LIMIT 5;
+
+-- 11d. days_employed yer tutucu değeri
+-- Bulgu: 55.374 satırda (%18) değer 365.243 gün (~1.000 yıl) → gerçek
+--        değil, "çalışma bilgisi yok" yer tutucusu.
+SELECT
+    COUNT(*) FILTER (WHERE days_employed::numeric > 0)  AS pozitif_adet,
+    MAX(days_employed::numeric)                         AS en_buyuk_deger
+FROM raw.application_train;
+
+-- 11e. Yer tutucu kimde? Gelir türüne göre dağılım
+-- Bulgu: 55.374 kaydın 55.352'si emekli (Pensioner), 22'si işsiz.
+--   - Emekliler en düşük riskli grup: %5,39 (genel %8,07).
+--   - Karar: days_employed'da 365243 → NULL + calisma_bilgisi_yok (0/1)
+--     bayrağı. Silmek, modelin güçlü bir sinyalini atmak olurdu.
+--   - Küçük gruplar (işsiz 22, doğum izni 5 kişi) yüksek oran gösteriyor
+--     ama yorumlanamaz. Oranın yanında hep adet gösterilmeli.
+SELECT
+    name_income_type,
+    COUNT(*)                                                 AS toplam,
+    COUNT(*) FILTER (WHERE days_employed::numeric = 365243)  AS placeholder_adet,
+    ROUND(100.0 * AVG(target::int), 2)                       AS temerrut_orani
+FROM raw.application_train
+GROUP BY 1
+ORDER BY 2 DESC;
