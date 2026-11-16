@@ -11,7 +11,10 @@
 --   C. previous_application → staging.previous_application
 --   D. installments_payments → staging.installments_payments
 --   E. bureau              → staging.bureau
---   F. Staging doğrulama sorguları
+--   F. bureau_balance      → staging.bureau_balance
+--   G. pos_cash_balance    → staging.pos_cash_balance
+--   H. credit_card_balance → staging.credit_card_balance
+--   I. Staging doğrulama sorguları
 -- =====================================================================
 
 
@@ -330,22 +333,186 @@ FROM raw.bureau;
 
 
 -- =====================================================================
--- F. STAGING DOĞRULAMA SORGULARI
+-- F. BUREAU_BALANCE → staging.bureau_balance
+-- =====================================================================
+
+-- F1. Referans bütünlüğü (yetim kayıtlar ve kapsama)
+-- Not: İlk deneme NOT IN (alt sorgu) ile yazıldı ve 3+ dakikada bitmedi.
+--      Büyük tablolarda NOT IN yerine JOIN kullanılır.
+--      FULL OUTER JOIN iki taraftaki eşleşmeyenleri tek sorguda gösterir.
+-- Bulgu:
+--   Aylık geçmişi olan kredi (bureau_balance):  817.395
+--   Yetim kredi (bureau'da kaydı yok):          43.041 (%5,3)
+--     → müşteriye bağlanamaz, join'de düşer; silinmiyor, belgeleniyor
+--   Büro kredisi (bureau):                    1.716.428
+--   Aylık geçmişi olan büro kredisi:            774.354 (yalnızca %45)
+--     → DPD analizi büro kredilerinin yarısından azını kapsar.
+--       Geçmişi olmayan "gecikmesiz" değil, "bilinmiyor" sayılmalı.
+WITH bb AS (
+    SELECT DISTINCT sk_id_bureau::numeric::int AS sk_id_bureau
+    FROM raw.bureau_balance
+)
+SELECT
+    COUNT(bb.sk_id_bureau)                                            AS bb_kredi_sayisi,
+    COUNT(*) FILTER (WHERE bb.sk_id_bureau IS NOT NULL
+                       AND b.sk_id_bureau  IS NULL)                   AS yetim_kredi,
+    COUNT(b.sk_id_bureau)                                             AS bureau_kredi_sayisi,
+    COUNT(*) FILTER (WHERE bb.sk_id_bureau IS NOT NULL
+                       AND b.sk_id_bureau  IS NOT NULL)               AS gecmisi_olan_kredi
+FROM bb
+FULL OUTER JOIN staging.bureau b
+    ON b.sk_id_bureau = bb.sk_id_bureau;
+
+-- F2. Türetilen sütunlar (stg_bureau_balance.sql)
+--   aktif_ay (status 0-5), gecikmede, gecikme_90_arti, dpd_kova
+--   - gecikmede ve gecikme_90_arti C/X aylarında NULL → AVG() otomatik
+--     olarak yalnızca aktif aylar üzerinden hesaplanır (doğru payda).
+--   - Bileşik primary key (sk_id_bureau, months_balance) hatasız kuruldu
+--     → tekrar eden kredi-ay yok.
+-- Doğrulama bulguları:
+--   Gecikme oranı (aktif aylar) %4,37 | 90+ oranı (aktif aylar) %0,87
+--   Ay aralığı −96 … 0 (8 yıl) → bureau.days_credit (−2.922 gün) ile tutarlı
+
+
+-- =====================================================================
+-- G. POS_CASH_BALANCE → staging.pos_cash_balance
+-- =====================================================================
+
+-- G1. Benzersizlik, gecikme ve boşluklar
+-- Not: COUNT(DISTINCT (a, b)) iki sütunun birlikte benzersizliğini sayar.
+-- Bulgu (10.001.358 satır):
+--   - (sk_id_prev, months_balance) benzersiz → bileşik primary key
+--   - En eski ay −96 (8 yıl)
+--   - En yüksek gecikme 4.231 gün (~11,6 yıl, pencereden uzun; şüpheli,
+--     silinmiyor)
+--   - Gecikmeli ay: sk_dpd > 0 → 295.227 (%2,95)
+--                   sk_dpd_def > 0 → 113.969 (%1,14)
+--     → Gecikmelerin ~%61'i küçük tutarlı (önemlilik eşiği altında).
+--     → KARAR: risk ölçümünde toleranslı gecikme (sk_dpd_def) kullanılır.
+--   - Vade boş: 26.071 (%0,26)
+SELECT
+    COUNT(*)                                        AS toplam,
+    COUNT(DISTINCT (sk_id_prev, months_balance))    AS benzersiz_kredi_ay,
+    MIN(months_balance::int)                        AS en_eski_ay,
+    MAX(sk_dpd::int)                                AS max_dpd,
+    COUNT(*) FILTER (WHERE sk_dpd::int > 0)         AS gecikmeli_ay,
+    COUNT(*) FILTER (WHERE sk_dpd_def::int > 0)     AS gecikmeli_ay_tolerans,
+    COUNT(*) - COUNT(cnt_instalment)                AS vade_bos
+FROM raw.pos_cash_balance;
+
+-- G2. Sözleşme durumları
+-- Bulgu: Active 9.151.119 (%91,5) | Completed 744.883 (%7,4)
+--        Signed 87.260 | Demand 7.065 | Returned to the store 5.461
+--        Approved 4.917 | Amortized debt 636 | Canceled 15 | XNA 2 (→ NULL)
+--   - Demand = muacceliyet (borcun tamamı talep edilmiş) → ciddi temerrüt
+--   - Amortized debt: resmi açıklama yok (tahmin: zarar yazılmış borç)
+--   → KARAR: Demand + Amortized debt = olumsuz_durum bayrağı
+SELECT name_contract_status, COUNT(*) AS adet
+FROM raw.pos_cash_balance
+GROUP BY 1
+ORDER BY 2 DESC;
+
+-- G3. Türetilen sütunlar (stg_pos_cash_balance.sql)
+--   gecikmede, gecikme_90_arti, dpd_kova (sk_dpd_def üzerinden; büro ile
+--   aynı isim ve kova yapısı), olumsuz_durum, kalan_taksit_orani
+
+
+-- =====================================================================
+-- H. CREDIT_CARD_BALANCE → staging.credit_card_balance
+-- =====================================================================
+
+-- H1. Bakiye, limit, harcama ve boşluklar
+-- Bulgu (3.840.312 satır):
+--   - (sk_id_prev, months_balance) benzersiz → bileşik primary key
+--   - Negatif bakiye 2.345 (fazla ödeme) → korunuyor
+--   - Sıfır limit 753.823 (%19,6) → incelendi (H2)
+--   - Limit aşımı (bakiye > limit > 0) 334.362 (%8,7) → limit_asimi bayrağı
+--   - Negatif harcama 4 (iade/iptal) → korunuyor
+--   - Ödeme boş 767.988 | ATM boş 749.816 → incelendi (H2)
+--   - En uzun toleranslı gecikme 3.260 gün
+SELECT
+    COUNT(*)                                                         AS toplam,
+    COUNT(DISTINCT (sk_id_prev, months_balance))                     AS benzersiz_kart_ay,
+    COUNT(*) FILTER (WHERE amt_balance::numeric < 0)                 AS negatif_bakiye,
+    COUNT(*) FILTER (WHERE amt_credit_limit_actual::numeric = 0)     AS sifir_limit,
+    COUNT(*) FILTER (WHERE amt_balance::numeric
+                         > amt_credit_limit_actual::numeric
+                       AND amt_credit_limit_actual::numeric > 0)     AS limit_asimi,
+    COUNT(*) FILTER (WHERE amt_drawings_atm_current::numeric < 0
+                        OR amt_drawings_current::numeric < 0)        AS negatif_harcama,
+    COUNT(*) - COUNT(amt_payment_current)                            AS odeme_bos,
+    COUNT(*) - COUNT(amt_drawings_atm_current)                       AS atm_bos,
+    MAX(sk_dpd_def::numeric)                                         AS max_dpd_def
+FROM raw.credit_card_balance;
+
+-- H2. Hipotez testi: sıfır limit ve boş alanlar aynı satırlar mı?
+-- Hipotez: Sıfır limit, boş ödeme ve boş ATM sayıları birbirine çok yakın
+--          → hepsi aynı "aktif olmayan kart ayı" satırları.
+-- Bulgu:
+--   Limit durumu  Satır      Bakiyeli   Ödeme boş  ATM boş   Harcama yapan
+--   Limit var     3.086.489  1.673.555  578.924    558.078   612.216
+--   Sıfır limit     753.823      7.992  189.064    191.738     4.650
+--   ✓ Sıfır limit = aktif olmayan kart ayı (yalnızca %1'inde bakiye var)
+--     → aktif_kart_ayi = limit > 0; kullanım oranı sıfır limitte NULL
+--   ✗ Boş alanlar aynı satırlar DEĞİL (~579 bin boş ödeme limitli kartlarda)
+--     → NULL = "o ay ilgili hareket kaydı yok"; 0'a çevrilmiyor
+--   Ders: Hipotezi test etmeden davranılsaydı 579 bin aktif kart ayı
+--         yanlışlıkla analizden çıkarılırdı.
+SELECT
+    CASE WHEN amt_credit_limit_actual::numeric = 0
+         THEN 'Sıfır limit' ELSE 'Limit var' END                    AS limit_durumu,
+    COUNT(*)                                                         AS satir,
+    COUNT(*) FILTER (WHERE amt_balance::numeric > 0)                 AS bakiyesi_olan,
+    COUNT(*) FILTER (WHERE amt_payment_current IS NULL)              AS odeme_bos,
+    COUNT(*) FILTER (WHERE amt_drawings_atm_current IS NULL)         AS atm_bos,
+    COUNT(*) FILTER (WHERE amt_drawings_current::numeric > 0)        AS harcama_yapan
+FROM raw.credit_card_balance
+GROUP BY 1;
+
+-- H3. Sözleşme durumları
+-- Bulgu: Active 3.698.436 | Completed 128.918 | Signed 11.058
+--        Demand 1.365 | Sent proposal 513 | Refused 17 | Approved 5
+--   → Demand = olumsuz_durum; XNA yok.
+SELECT name_contract_status, COUNT(*) AS adet
+FROM raw.credit_card_balance
+GROUP BY 1
+ORDER BY 2 DESC;
+
+-- H4. Türetilen sütunlar (stg_credit_card_balance.sql)
+--   Kart kullanımı:
+--     aktif_kart_ayi, limit_kullanim_orani (bakiye / limit),
+--     limit_asimi, asgari_odeme_karsilama (ödeme / asgari),
+--     asgari_alti_odeme (NULL'lu bayrak), nakit_avans_payi (ATM / toplam)
+--   Gecikme (POS ve büro ile aynı yapı):
+--     gecikmede, gecikme_90_arti, dpd_kova, olumsuz_durum
+--   Not: amt_recivable sütun adındaki yazım hatası kaynaktan geliyor.
+
+
+-- =====================================================================
+-- I. STAGING DOĞRULAMA SORGULARI
 -- Tablolar kurulduktan sonra, beklenen değerlerle karşılaştır.
 -- =====================================================================
 
--- F1. Satır sayıları (raw ile aynı olmalı)
+-- I1. Satır sayıları (raw ile aynı olmalı)
 -- Beklenen: application 307.511 | previous_application 1.670.214
 --           installments_payments 13.605.401 | bureau 1.716.428
+--           bureau_balance 27.299.925 | pos_cash_balance 10.001.358
+--           credit_card_balance 3.840.312
 SELECT 'application'           AS tablo, COUNT(*) AS satir FROM staging.application
 UNION ALL
 SELECT 'previous_application',            COUNT(*)          FROM staging.previous_application
 UNION ALL
 SELECT 'installments_payments',           COUNT(*)          FROM staging.installments_payments
 UNION ALL
-SELECT 'bureau',                          COUNT(*)          FROM staging.bureau;
+SELECT 'bureau',                          COUNT(*)          FROM staging.bureau
+UNION ALL
+SELECT 'bureau_balance',                  COUNT(*)          FROM staging.bureau_balance
+UNION ALL
+SELECT 'pos_cash_balance',                COUNT(*)          FROM staging.pos_cash_balance
+UNION ALL
+SELECT 'credit_card_balance',             COUNT(*)          FROM staging.credit_card_balance;
 
--- F2. staging.application
+-- I2. staging.application
 SELECT
     MIN(yas)                 AS min_yas,
     MAX(yas)                 AS max_yas,
@@ -356,7 +523,7 @@ SELECT
     PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY kredi_mal_orani)    AS medyan_kredi_mal
 FROM staging.application;
 
--- F3. staging.previous_application
+-- I3. staging.previous_application
 -- Beklenen: onaylı 1.036.781 | red_nedeni_null 1.353.093
 SELECT
     COUNT(*)                               AS toplam,
@@ -367,7 +534,7 @@ SELECT
         (ORDER BY onaylanan_istenen_orani) AS medyan_onaylanan_istenen
 FROM staging.previous_application;
 
--- F4. staging.installments_payments
+-- I4. staging.installments_payments
 -- Beklenen: gecikme_bos 2.905 | geç %8,43 | medyan −6 | p99 18
 SELECT
     COUNT(*)                                                   AS toplam,
@@ -377,7 +544,7 @@ SELECT
     PERCENTILE_CONT(0.99) WITHIN GROUP (ORDER BY gecikme_gun)  AS p99_gecikme
 FROM staging.installments_payments;
 
--- F5. staging.bureau
+-- I5. staging.bureau
 -- Beklenen: aktif 630.607 | olumsuz_kapanis 6.548 | ana_para_birimi 1.715.020
 --           plan_bitis_yok 38.485 | plan_bitis_null ~38.649
 SELECT
@@ -394,3 +561,41 @@ SELECT kredi_turu_grup, COUNT(*) AS adet
 FROM staging.bureau
 GROUP BY 1
 ORDER BY 2 DESC;
+
+-- I6. staging.bureau_balance
+-- Sonuç: gecikme %4,37 | 90+ %0,87 | ay aralığı −96 … 0
+SELECT
+    COUNT(*)                                AS toplam,
+    SUM(aktif_ay)                           AS aktif_ay,
+    ROUND(100.0 * AVG(gecikmede), 2)        AS gecikme_yuzde_aktif,
+    ROUND(100.0 * AVG(gecikme_90_arti), 2)  AS npl_yuzde_aktif,
+    MIN(months_balance)                     AS en_eski_ay,
+    MAX(months_balance)                     AS en_yeni_ay
+FROM staging.bureau_balance;
+
+-- I7. staging.pos_cash_balance
+-- Beklenen: gecikmede 113.969 | olumsuz_durum 7.701 | durum_null 2
+SELECT
+    COUNT(*)                                AS toplam,
+    SUM(gecikmede)                          AS gecikmede,
+    SUM(gecikme_90_arti)                    AS gecikme_90_arti,
+    SUM(olumsuz_durum)                      AS olumsuz_durum,
+    COUNT(*) - COUNT(name_contract_status)  AS durum_null
+FROM staging.pos_cash_balance;
+
+SELECT dpd_kova, COUNT(*) AS adet
+FROM staging.pos_cash_balance
+GROUP BY 1
+ORDER BY 1;
+
+-- I8. staging.credit_card_balance
+-- Beklenen: aktif_kart_ayi 3.086.489 | limit_asimi 334.362 | olumsuz_durum 1.365
+SELECT
+    COUNT(*)                                                          AS toplam,
+    SUM(aktif_kart_ayi)                                               AS aktif_kart_ayi,
+    SUM(limit_asimi)                                                  AS limit_asimi,
+    SUM(olumsuz_durum)                                                AS olumsuz_durum,
+    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY limit_kullanim_orani) AS medyan_kullanim,
+    ROUND(100.0 * AVG(asgari_alti_odeme), 2)                          AS asgari_alti_yuzde,
+    ROUND(100.0 * AVG(gecikmede), 2)                                  AS gecikme_yuzde
+FROM staging.credit_card_balance;
