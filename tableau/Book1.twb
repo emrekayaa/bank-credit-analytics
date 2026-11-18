@@ -1,0 +1,2076 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20263.26.1022.1645                               -->
+<workbook _.fcp.WorkbookFingerprinting.true...author-id='a7364c597ff0902222b0012a8be00682bdb568f79d7a7ca121cb905b60c92888' _.fcp.WorkbookFingerprinting.true...creator-author-id='a7364c597ff0902222b0012a8be00682bdb568f79d7a7ca121cb905b60c92888' _.fcp.WorkbookFingerprinting.true...creator-license-type='public' _.fcp.WorkbookFingerprinting.true...creator-machine-id='2a32418b085809e5f53db847f188ef076da7289bb35ef729ba6a92981f68cca6' _.fcp.WorkbookFingerprinting.true...license-type='public' _.fcp.WorkbookFingerprinting.true...machine-id='2a32418b085809e5f53db847f188ef076da7289bb35ef729ba6a92981f68cca6' original-version='18.1' source-build='2026.3.0 (20263.26.1022.1645)' source-platform='mac' version='18.1' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AnimationOnByDefault />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <_.fcp.WorkbookFingerprinting.true...WorkbookFingerprinting />
+  </document-format-change-manifest>
+  <repository-location id='Book1_17949804415050' path='/workbooks' revision='1.0' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <style>
+    <style-rule element='worksheet'>
+      <format attr='font-family' value='Tableau Semibold' />
+      <format attr='color' value='#f2f2f2' />
+      <format attr='font-size' value='14' />
+    </style-rule>
+    <style-rule element='gridline'>
+      <format attr='line-visibility' value='off' />
+    </style-rule>
+    <style-rule element='all'>
+      <format attr='color' value='#bfbfbf' />
+    </style-rule>
+  </style>
+  <datasources>
+    <datasource caption='musteri' inline='true' name='federated.1iu5hxe16osiej1g45fk71svs6fs' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='musteri' name='textscan.067vq1s1k6q64h1dirrna0tms485'>
+            <connection class='textscan' directory='/Users/emre/projects/bank-credit-analytics/data/tableau' filename='musteri.csv' password='' server='' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.067vq1s1k6q64h1dirrna0tms485' name='musteri.csv' table='[musteri#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en' separator=','>
+            <column datatype='string' name='musteri_id' ordinal='0' />
+            <column datatype='integer' name='temerrut' ordinal='1' />
+            <column datatype='string' name='temerrut_durumu' ordinal='2' />
+            <column datatype='string' name='urun_turu' ordinal='3' />
+            <column datatype='string' name='cinsiyet' ordinal='4' />
+            <column datatype='real' name='yas' ordinal='5' />
+            <column datatype='string' name='yas_grubu' ordinal='6' />
+            <column datatype='string' name='egitim' ordinal='7' />
+            <column datatype='string' name='gelir_turu' ordinal='8' />
+            <column datatype='string' name='medeni_durum' ordinal='9' />
+            <column datatype='string' name='konut_durumu' ordinal='10' />
+            <column datatype='string' name='meslek' ordinal='11' />
+            <column datatype='integer' name='cocuk_sayisi' ordinal='12' />
+            <column datatype='string' name='ev_sahipligi' ordinal='13' />
+            <column datatype='string' name='arac_sahipligi' ordinal='14' />
+            <column datatype='string' name='bolge_risk_notu' ordinal='15' />
+            <column datatype='real' name='calisma_yili' ordinal='16' />
+            <column datatype='string' name='calisma_suresi_grubu' ordinal='17' />
+            <column datatype='real' name='gelir' ordinal='18' />
+            <column datatype='real' name='kredi_tutari' ordinal='19' />
+            <column datatype='real' name='taksit_tutari' ordinal='20' />
+            <column datatype='real' name='mal_fiyati' ordinal='21' />
+            <column datatype='string' name='gelir_dilimi' ordinal='22' />
+            <column datatype='string' name='kredi_tutari_grubu' ordinal='23' />
+            <column datatype='real' name='kredi_gelir_orani' ordinal='24' />
+            <column datatype='string' name='kredi_gelir_grubu' ordinal='25' />
+            <column datatype='real' name='dsr' ordinal='26' />
+            <column datatype='string' name='dsr_grubu' ordinal='27' />
+            <column datatype='real' name='ltv' ordinal='28' />
+            <column datatype='string' name='ltv_grubu' ordinal='29' />
+            <column datatype='real' name='toplam_borc_gelir_orani' ordinal='30' />
+            <column datatype='real' name='dis_skor' ordinal='31' />
+            <column datatype='string' name='kredi_gecmisi' ordinal='32' />
+            <column datatype='string' name='musteri_tipi' ordinal='33' />
+            <column datatype='string' name='kart_sahipligi' ordinal='34' />
+            <column datatype='integer' name='onceki_basvuru_sayisi' ordinal='35' />
+            <column datatype='real' name='red_orani' ordinal='36' />
+            <column datatype='string' name='red_orani_grubu' ordinal='37' />
+            <column datatype='real' name='gec_taksit_orani' ordinal='38' />
+            <column datatype='integer' name='max_gecikme_gun' ordinal='39' />
+            <column datatype='string' name='odeme_davranisi' ordinal='40' />
+            <column datatype='real' name='pos_gecikmeli_ay_orani' ordinal='41' />
+            <column datatype='real' name='kart_son_ay_kullanim' ordinal='42' />
+            <column datatype='real' name='kart_asgari_alti_odeme_orani' ordinal='43' />
+            <column datatype='real' name='kart_ort_nakit_avans_payi' ordinal='44' />
+            <column datatype='string' name='kart_kullanim_grubu' ordinal='45' />
+            <column datatype='integer' name='buro_kredi_sayisi' ordinal='46' />
+            <column datatype='integer' name='buro_aktif_kredi_sayisi' ordinal='47' />
+            <column datatype='real' name='buro_borc_gelir_orani' ordinal='48' />
+            <column datatype='string' name='dis_borc_grubu' ordinal='49' />
+            <column datatype='string' name='kredi_acligi_grubu' ordinal='50' />
+            <column datatype='integer' name='buro_olumsuz_kapanis' ordinal='51' />
+            <column datatype='integer' name='buro_su_an_gecikmede' ordinal='52' />
+            <column datatype='real' name='buro_gecikmeli_ay_orani' ordinal='53' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;¤&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>musteri_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[musteri_id]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>musteri_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>temerrut</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[temerrut]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>temerrut</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>temerrut_durumu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[temerrut_durumu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>temerrut_durumu</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>urun_turu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[urun_turu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>urun_turu</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>cinsiyet</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[cinsiyet]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>cinsiyet</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>yas</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[yas]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>yas</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>yas_grubu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[yas_grubu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>yas_grubu</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>egitim</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[egitim]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>egitim</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>gelir_turu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[gelir_turu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>gelir_turu</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>medeni_durum</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[medeni_durum]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>medeni_durum</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>konut_durumu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[konut_durumu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>konut_durumu</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>meslek</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[meslek]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>meslek</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>cocuk_sayisi</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[cocuk_sayisi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>cocuk_sayisi</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ev_sahipligi</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ev_sahipligi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>ev_sahipligi</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>arac_sahipligi</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[arac_sahipligi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>arac_sahipligi</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>bolge_risk_notu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[bolge_risk_notu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>bolge_risk_notu</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>calisma_yili</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[calisma_yili]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>calisma_yili</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>calisma_suresi_grubu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[calisma_suresi_grubu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>calisma_suresi_grubu</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>gelir</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[gelir]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>gelir</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kredi_tutari</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[kredi_tutari]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kredi_tutari</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>taksit_tutari</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[taksit_tutari]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>taksit_tutari</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>mal_fiyati</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[mal_fiyati]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>mal_fiyati</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>gelir_dilimi</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[gelir_dilimi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>gelir_dilimi</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kredi_tutari_grubu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[kredi_tutari_grubu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kredi_tutari_grubu</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kredi_gelir_orani</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[kredi_gelir_orani]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kredi_gelir_orani</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kredi_gelir_grubu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[kredi_gelir_grubu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kredi_gelir_grubu</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>dsr</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[dsr]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>dsr</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>dsr_grubu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[dsr_grubu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>dsr_grubu</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ltv</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[ltv]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>ltv</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ltv_grubu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ltv_grubu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>ltv_grubu</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>toplam_borc_gelir_orani</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[toplam_borc_gelir_orani]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>toplam_borc_gelir_orani</remote-alias>
+            <ordinal>30</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>dis_skor</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[dis_skor]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>dis_skor</remote-alias>
+            <ordinal>31</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kredi_gecmisi</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[kredi_gecmisi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kredi_gecmisi</remote-alias>
+            <ordinal>32</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>musteri_tipi</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[musteri_tipi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>musteri_tipi</remote-alias>
+            <ordinal>33</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kart_sahipligi</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[kart_sahipligi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kart_sahipligi</remote-alias>
+            <ordinal>34</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>onceki_basvuru_sayisi</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[onceki_basvuru_sayisi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>onceki_basvuru_sayisi</remote-alias>
+            <ordinal>35</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>red_orani</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[red_orani]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>red_orani</remote-alias>
+            <ordinal>36</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>red_orani_grubu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[red_orani_grubu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>red_orani_grubu</remote-alias>
+            <ordinal>37</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>gec_taksit_orani</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[gec_taksit_orani]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>gec_taksit_orani</remote-alias>
+            <ordinal>38</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>max_gecikme_gun</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[max_gecikme_gun]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>max_gecikme_gun</remote-alias>
+            <ordinal>39</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>odeme_davranisi</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[odeme_davranisi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>odeme_davranisi</remote-alias>
+            <ordinal>40</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>pos_gecikmeli_ay_orani</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[pos_gecikmeli_ay_orani]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>pos_gecikmeli_ay_orani</remote-alias>
+            <ordinal>41</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kart_son_ay_kullanim</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[kart_son_ay_kullanim]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kart_son_ay_kullanim</remote-alias>
+            <ordinal>42</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kart_asgari_alti_odeme_orani</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[kart_asgari_alti_odeme_orani]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kart_asgari_alti_odeme_orani</remote-alias>
+            <ordinal>43</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kart_ort_nakit_avans_payi</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[kart_ort_nakit_avans_payi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kart_ort_nakit_avans_payi</remote-alias>
+            <ordinal>44</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kart_kullanim_grubu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[kart_kullanim_grubu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kart_kullanim_grubu</remote-alias>
+            <ordinal>45</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>buro_kredi_sayisi</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[buro_kredi_sayisi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>buro_kredi_sayisi</remote-alias>
+            <ordinal>46</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>buro_aktif_kredi_sayisi</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[buro_aktif_kredi_sayisi]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>buro_aktif_kredi_sayisi</remote-alias>
+            <ordinal>47</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>buro_borc_gelir_orani</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[buro_borc_gelir_orani]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>buro_borc_gelir_orani</remote-alias>
+            <ordinal>48</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>dis_borc_grubu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[dis_borc_grubu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>dis_borc_grubu</remote-alias>
+            <ordinal>49</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>kredi_acligi_grubu</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[kredi_acligi_grubu]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>kredi_acligi_grubu</remote-alias>
+            <ordinal>50</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>buro_olumsuz_kapanis</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[buro_olumsuz_kapanis]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>buro_olumsuz_kapanis</remote-alias>
+            <ordinal>51</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>buro_su_an_gecikmede</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[buro_su_an_gecikmede]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>buro_su_an_gecikmede</remote-alias>
+            <ordinal>52</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>buro_gecikmeli_ay_orani</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[buro_gecikmeli_ay_orani]</local-name>
+            <parent-name>[musteri.csv]</parent-name>
+            <remote-alias>buro_gecikmeli_ay_orani</remote-alias>
+            <ordinal>53</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Müşteri Sayısı' datatype='integer' name='[Calculation_1661155155857408]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='COUNT([musteri_id])' />
+      </column>
+      <column caption='Temerrüt Sayısı' datatype='integer' name='[Calculation_1661155155984385]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([temerrut])' />
+      </column>
+      <column caption='Temerrüt Oranı' datatype='real' name='[Calculation_1661155156078594]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='AVG([temerrut])' />
+      </column>
+      <column caption='Toplam Kredi' datatype='real' name='[Calculation_1661155156144131]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([kredi_tutari])' />
+      </column>
+      <column caption='Temerrüt Tutar Oranı' datatype='real' name='[Calculation_1661155156209668]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM(IF [temerrut] = 1 THEN [kredi_tutari] END) / SUM([kredi_tutari])' />
+      </column>
+      <column caption='Medyan DSR' datatype='real' name='[Calculation_1661155156353029]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='MEDIAN([dsr])' />
+      </column>
+      <column caption='Kart Penetrasyonu' datatype='real' name='[Calculation_1661155156422662]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='AVG(IF [kart_sahipligi] = &quot;Var&quot; THEN 1 ELSE 0 END)' />
+      </column>
+      <column caption='Kredi Geçmişi Olmayan' datatype='real' name='[Calculation_1661155156545543]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='AVG(IF [kredi_gecmisi] = &quot;Yok&quot; THEN 1 ELSE 0 END)' />
+      </column>
+      <column caption='musteri.csv' datatype='table' name='[__tableau_internal_object_id__].[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]' role='measure' type='quantitative' />
+      <column caption='Arac Sahipligi' datatype='string' name='[arac_sahipligi]' role='dimension' type='nominal' />
+      <column caption='Bolge Risk Notu' datatype='string' default-role='measure' default-type='quantitative' name='[bolge_risk_notu]' role='dimension' type='nominal' />
+      <column caption='Buro Aktif Kredi Sayisi' datatype='integer' name='[buro_aktif_kredi_sayisi]' role='measure' type='quantitative' />
+      <column caption='Buro Borc Gelir Orani' datatype='real' name='[buro_borc_gelir_orani]' role='measure' type='quantitative' />
+      <column caption='Buro Gecikmeli Ay Orani' datatype='real' name='[buro_gecikmeli_ay_orani]' role='measure' type='quantitative' />
+      <column caption='Buro Kredi Sayisi' datatype='integer' name='[buro_kredi_sayisi]' role='measure' type='quantitative' />
+      <column caption='Buro Olumsuz Kapanis' datatype='integer' name='[buro_olumsuz_kapanis]' role='measure' type='quantitative' />
+      <column caption='Buro Su An Gecikmede' datatype='integer' name='[buro_su_an_gecikmede]' role='measure' type='quantitative' />
+      <column caption='Calisma Suresi Grubu' datatype='string' name='[calisma_suresi_grubu]' role='dimension' type='nominal' />
+      <column caption='Calisma Yili' datatype='real' name='[calisma_yili]' role='measure' type='quantitative' />
+      <column caption='Cinsiyet' datatype='string' name='[cinsiyet]' role='dimension' type='nominal' />
+      <column caption='Cocuk Sayisi' datatype='integer' name='[cocuk_sayisi]' role='measure' type='quantitative' />
+      <column caption='Dis Borc Grubu' datatype='string' name='[dis_borc_grubu]' role='dimension' type='nominal' />
+      <column caption='Dis Skor' datatype='real' name='[dis_skor]' role='measure' type='quantitative' />
+      <column caption='Dsr' datatype='real' name='[dsr]' role='measure' type='quantitative' />
+      <column caption='Dsr Grubu' datatype='string' name='[dsr_grubu]' role='dimension' type='nominal' />
+      <column caption='Egitim' datatype='string' name='[egitim]' role='dimension' type='nominal' />
+      <column caption='Ev Sahipligi' datatype='string' name='[ev_sahipligi]' role='dimension' type='nominal' />
+      <column caption='Gec Taksit Orani' datatype='real' name='[gec_taksit_orani]' role='measure' type='quantitative' />
+      <column caption='Gelir' datatype='real' name='[gelir]' role='measure' type='quantitative' />
+      <column caption='Gelir Dilimi' datatype='string' name='[gelir_dilimi]' role='dimension' type='nominal' />
+      <column caption='Gelir Turu' datatype='string' name='[gelir_turu]' role='dimension' type='nominal' />
+      <column caption='Kart Asgari Alti Odeme Orani' datatype='real' name='[kart_asgari_alti_odeme_orani]' role='measure' type='quantitative' />
+      <column caption='Kart Kullanim Grubu' datatype='string' name='[kart_kullanim_grubu]' role='dimension' type='nominal' />
+      <column caption='Kart Ort Nakit Avans Payi' datatype='real' name='[kart_ort_nakit_avans_payi]' role='measure' type='quantitative' />
+      <column caption='Kart Sahipligi' datatype='string' name='[kart_sahipligi]' role='dimension' type='nominal' />
+      <column caption='Kart Son Ay Kullanim' datatype='real' name='[kart_son_ay_kullanim]' role='measure' type='quantitative' />
+      <column caption='Konut Durumu' datatype='string' name='[konut_durumu]' role='dimension' type='nominal' />
+      <column caption='Kredi Acligi Grubu' datatype='string' name='[kredi_acligi_grubu]' role='dimension' type='nominal' />
+      <column caption='Kredi Gecmisi' datatype='string' name='[kredi_gecmisi]' role='dimension' type='nominal' />
+      <column caption='Kredi Gelir Grubu' datatype='string' name='[kredi_gelir_grubu]' role='dimension' type='nominal' />
+      <column caption='Kredi Gelir Orani' datatype='real' name='[kredi_gelir_orani]' role='measure' type='quantitative' />
+      <column caption='Kredi Tutari' datatype='real' name='[kredi_tutari]' role='measure' type='quantitative' />
+      <column caption='Kredi Tutari Grubu' datatype='string' name='[kredi_tutari_grubu]' role='dimension' type='nominal' />
+      <column caption='Ltv' datatype='real' name='[ltv]' role='measure' type='quantitative' />
+      <column caption='Ltv Grubu' datatype='string' name='[ltv_grubu]' role='dimension' type='nominal' />
+      <column caption='Mal Fiyati' datatype='real' name='[mal_fiyati]' role='measure' type='quantitative' />
+      <column caption='Max Gecikme Gun' datatype='integer' name='[max_gecikme_gun]' role='measure' type='quantitative' />
+      <column caption='Medeni Durum' datatype='string' name='[medeni_durum]' role='dimension' type='nominal' />
+      <column caption='Meslek' datatype='string' name='[meslek]' role='dimension' type='nominal' />
+      <column caption='Musteri Id' datatype='string' name='[musteri_id]' role='dimension' type='nominal' />
+      <column caption='Musteri Tipi' datatype='string' name='[musteri_tipi]' role='dimension' type='nominal' />
+      <column caption='Odeme Davranisi' datatype='string' name='[odeme_davranisi]' role='dimension' type='nominal' />
+      <column caption='Onceki Basvuru Sayisi' datatype='integer' name='[onceki_basvuru_sayisi]' role='measure' type='quantitative' />
+      <column caption='Pos Gecikmeli Ay Orani' datatype='real' name='[pos_gecikmeli_ay_orani]' role='measure' type='quantitative' />
+      <column caption='Red Orani' datatype='real' name='[red_orani]' role='measure' type='quantitative' />
+      <column caption='Red Orani Grubu' datatype='string' name='[red_orani_grubu]' role='dimension' type='nominal' />
+      <column caption='Taksit Tutari' datatype='real' name='[taksit_tutari]' role='measure' type='quantitative' />
+      <column caption='Temerrut' datatype='integer' name='[temerrut]' role='measure' type='quantitative' />
+      <column caption='Temerrut Durumu' datatype='string' name='[temerrut_durumu]' role='dimension' type='nominal' />
+      <column caption='Toplam Borc Gelir Orani' datatype='real' name='[toplam_borc_gelir_orani]' role='measure' type='quantitative' />
+      <column caption='Urun Turu' datatype='string' name='[urun_turu]' role='dimension' type='nominal' />
+      <column caption='Yas' datatype='real' name='[yas]' role='measure' type='quantitative' />
+      <column caption='Yas Grubu' datatype='string' name='[yas_grubu]' role='dimension' type='nominal' />
+      <extract count='-1' enabled='true' object-id='' units='records' user-specific='false'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='/var/folders/lx/th7_8ng15wj2d74sg9j0t5wh0000gn/T/tableau-temp/#TableauTemp_1vomjne0dsboew16jrwwq088dt6v.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='11/18/2026 04:54:47 AM' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>musteri_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[musteri_id]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>musteri_id</remote-alias>
+              <ordinal>0</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>307511</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>temerrut</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[temerrut]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>temerrut</remote-alias>
+              <ordinal>1</ordinal>
+              <family>musteri.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>temerrut_durumu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[temerrut_durumu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>temerrut_durumu</remote-alias>
+              <ordinal>2</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>urun_turu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[urun_turu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>urun_turu</remote-alias>
+              <ordinal>3</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>cinsiyet</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[cinsiyet]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>cinsiyet</remote-alias>
+              <ordinal>4</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>yas</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[yas]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>yas</remote-alias>
+              <ordinal>5</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1334</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>yas_grubu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[yas_grubu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>yas_grubu</remote-alias>
+              <ordinal>6</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>egitim</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[egitim]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>egitim</remote-alias>
+              <ordinal>7</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>7</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>gelir_turu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[gelir_turu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>gelir_turu</remote-alias>
+              <ordinal>8</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>medeni_durum</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[medeni_durum]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>medeni_durum</remote-alias>
+              <ordinal>9</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>konut_durumu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[konut_durumu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>konut_durumu</remote-alias>
+              <ordinal>10</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>meslek</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[meslek]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>meslek</remote-alias>
+              <ordinal>11</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>19</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>cocuk_sayisi</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[cocuk_sayisi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>cocuk_sayisi</remote-alias>
+              <ordinal>12</ordinal>
+              <family>musteri.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ev_sahipligi</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[ev_sahipligi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>ev_sahipligi</remote-alias>
+              <ordinal>13</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>arac_sahipligi</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[arac_sahipligi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>arac_sahipligi</remote-alias>
+              <ordinal>14</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>bolge_risk_notu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[bolge_risk_notu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>bolge_risk_notu</remote-alias>
+              <ordinal>15</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>calisma_yili</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[calisma_yili]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>calisma_yili</remote-alias>
+              <ordinal>16</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>942</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>calisma_suresi_grubu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[calisma_suresi_grubu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>calisma_suresi_grubu</remote-alias>
+              <ordinal>17</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>gelir</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[gelir]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>gelir</remote-alias>
+              <ordinal>18</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>681</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kredi_tutari</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[kredi_tutari]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kredi_tutari</remote-alias>
+              <ordinal>19</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>7148</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>taksit_tutari</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[taksit_tutari]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>taksit_tutari</remote-alias>
+              <ordinal>20</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>20754</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>mal_fiyati</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[mal_fiyati]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>mal_fiyati</remote-alias>
+              <ordinal>21</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1311</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>gelir_dilimi</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[gelir_dilimi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>gelir_dilimi</remote-alias>
+              <ordinal>22</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kredi_tutari_grubu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[kredi_tutari_grubu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kredi_tutari_grubu</remote-alias>
+              <ordinal>23</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kredi_gelir_orani</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[kredi_gelir_orani]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kredi_gelir_orani</remote-alias>
+              <ordinal>24</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>18902</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kredi_gelir_grubu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[kredi_gelir_grubu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kredi_gelir_grubu</remote-alias>
+              <ordinal>25</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>dsr</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[dsr]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>dsr</remote-alias>
+              <ordinal>26</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1478</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>dsr_grubu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[dsr_grubu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>dsr_grubu</remote-alias>
+              <ordinal>27</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>7</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ltv</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[ltv]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>ltv</remote-alias>
+              <ordinal>28</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>160</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ltv_grubu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[ltv_grubu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>ltv_grubu</remote-alias>
+              <ordinal>29</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>toplam_borc_gelir_orani</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[toplam_borc_gelir_orani]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>toplam_borc_gelir_orani</remote-alias>
+              <ordinal>30</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>44115</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>dis_skor</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[dis_skor]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>dis_skor</remote-alias>
+              <ordinal>31</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2474</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kredi_gecmisi</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[kredi_gecmisi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kredi_gecmisi</remote-alias>
+              <ordinal>32</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>musteri_tipi</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[musteri_tipi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>musteri_tipi</remote-alias>
+              <ordinal>33</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kart_sahipligi</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[kart_sahipligi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kart_sahipligi</remote-alias>
+              <ordinal>34</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>onceki_basvuru_sayisi</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[onceki_basvuru_sayisi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>onceki_basvuru_sayisi</remote-alias>
+              <ordinal>35</ordinal>
+              <family>musteri.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>87</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>red_orani</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[red_orani]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>red_orani</remote-alias>
+              <ordinal>36</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>309</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>red_orani_grubu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[red_orani_grubu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>red_orani_grubu</remote-alias>
+              <ordinal>37</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>gec_taksit_orani</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[gec_taksit_orani]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>gec_taksit_orani</remote-alias>
+              <ordinal>38</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1790</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>max_gecikme_gun</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[max_gecikme_gun]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>max_gecikme_gun</remote-alias>
+              <ordinal>39</ordinal>
+              <family>musteri.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>771</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>odeme_davranisi</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[odeme_davranisi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>odeme_davranisi</remote-alias>
+              <ordinal>40</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>pos_gecikmeli_ay_orani</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[pos_gecikmeli_ay_orani]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>pos_gecikmeli_ay_orani</remote-alias>
+              <ordinal>41</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>625</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kart_son_ay_kullanim</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[kart_son_ay_kullanim]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kart_son_ay_kullanim</remote-alias>
+              <ordinal>42</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>8532</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kart_asgari_alti_odeme_orani</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[kart_asgari_alti_odeme_orani]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kart_asgari_alti_odeme_orani</remote-alias>
+              <ordinal>43</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>990</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kart_ort_nakit_avans_payi</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[kart_ort_nakit_avans_payi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kart_ort_nakit_avans_payi</remote-alias>
+              <ordinal>44</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5827</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kart_kullanim_grubu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[kart_kullanim_grubu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kart_kullanim_grubu</remote-alias>
+              <ordinal>45</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>buro_kredi_sayisi</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[buro_kredi_sayisi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>buro_kredi_sayisi</remote-alias>
+              <ordinal>46</ordinal>
+              <family>musteri.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>76</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>buro_aktif_kredi_sayisi</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[buro_aktif_kredi_sayisi]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>buro_aktif_kredi_sayisi</remote-alias>
+              <ordinal>47</ordinal>
+              <family>musteri.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>27</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>buro_borc_gelir_orani</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[buro_borc_gelir_orani]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>buro_borc_gelir_orani</remote-alias>
+              <ordinal>48</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>41080</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>dis_borc_grubu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[dis_borc_grubu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>dis_borc_grubu</remote-alias>
+              <ordinal>49</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>kredi_acligi_grubu</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[kredi_acligi_grubu]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>kredi_acligi_grubu</remote-alias>
+              <ordinal>50</ordinal>
+              <family>musteri.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>buro_olumsuz_kapanis</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[buro_olumsuz_kapanis]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>buro_olumsuz_kapanis</remote-alias>
+              <ordinal>51</ordinal>
+              <family>musteri.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>buro_su_an_gecikmede</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[buro_su_an_gecikmede]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>buro_su_an_gecikmede</remote-alias>
+              <ordinal>52</ordinal>
+              <family>musteri.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>buro_gecikmeli_ay_orani</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[buro_gecikmeli_ay_orani]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>buro_gecikmeli_ay_orani</remote-alias>
+              <ordinal>53</ordinal>
+              <family>musteri.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1218</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[musteri.csv_6B167759B2CB413CAEC7342A5D1CF149]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+      <object-graph>
+        <objects>
+          <object caption='musteri.csv' id='musteri.csv_6B167759B2CB413CAEC7342A5D1CF149'>
+            <properties context=''>
+              <relation connection='textscan.067vq1s1k6q64h1dirrna0tms485' name='musteri.csv' table='[musteri#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en' separator=','>
+                  <column datatype='string' name='musteri_id' ordinal='0' />
+                  <column datatype='integer' name='temerrut' ordinal='1' />
+                  <column datatype='string' name='temerrut_durumu' ordinal='2' />
+                  <column datatype='string' name='urun_turu' ordinal='3' />
+                  <column datatype='string' name='cinsiyet' ordinal='4' />
+                  <column datatype='real' name='yas' ordinal='5' />
+                  <column datatype='string' name='yas_grubu' ordinal='6' />
+                  <column datatype='string' name='egitim' ordinal='7' />
+                  <column datatype='string' name='gelir_turu' ordinal='8' />
+                  <column datatype='string' name='medeni_durum' ordinal='9' />
+                  <column datatype='string' name='konut_durumu' ordinal='10' />
+                  <column datatype='string' name='meslek' ordinal='11' />
+                  <column datatype='integer' name='cocuk_sayisi' ordinal='12' />
+                  <column datatype='string' name='ev_sahipligi' ordinal='13' />
+                  <column datatype='string' name='arac_sahipligi' ordinal='14' />
+                  <column datatype='string' name='bolge_risk_notu' ordinal='15' />
+                  <column datatype='real' name='calisma_yili' ordinal='16' />
+                  <column datatype='string' name='calisma_suresi_grubu' ordinal='17' />
+                  <column datatype='real' name='gelir' ordinal='18' />
+                  <column datatype='real' name='kredi_tutari' ordinal='19' />
+                  <column datatype='real' name='taksit_tutari' ordinal='20' />
+                  <column datatype='real' name='mal_fiyati' ordinal='21' />
+                  <column datatype='string' name='gelir_dilimi' ordinal='22' />
+                  <column datatype='string' name='kredi_tutari_grubu' ordinal='23' />
+                  <column datatype='real' name='kredi_gelir_orani' ordinal='24' />
+                  <column datatype='string' name='kredi_gelir_grubu' ordinal='25' />
+                  <column datatype='real' name='dsr' ordinal='26' />
+                  <column datatype='string' name='dsr_grubu' ordinal='27' />
+                  <column datatype='real' name='ltv' ordinal='28' />
+                  <column datatype='string' name='ltv_grubu' ordinal='29' />
+                  <column datatype='real' name='toplam_borc_gelir_orani' ordinal='30' />
+                  <column datatype='real' name='dis_skor' ordinal='31' />
+                  <column datatype='string' name='kredi_gecmisi' ordinal='32' />
+                  <column datatype='string' name='musteri_tipi' ordinal='33' />
+                  <column datatype='string' name='kart_sahipligi' ordinal='34' />
+                  <column datatype='integer' name='onceki_basvuru_sayisi' ordinal='35' />
+                  <column datatype='real' name='red_orani' ordinal='36' />
+                  <column datatype='string' name='red_orani_grubu' ordinal='37' />
+                  <column datatype='real' name='gec_taksit_orani' ordinal='38' />
+                  <column datatype='integer' name='max_gecikme_gun' ordinal='39' />
+                  <column datatype='string' name='odeme_davranisi' ordinal='40' />
+                  <column datatype='real' name='pos_gecikmeli_ay_orani' ordinal='41' />
+                  <column datatype='real' name='kart_son_ay_kullanim' ordinal='42' />
+                  <column datatype='real' name='kart_asgari_alti_odeme_orani' ordinal='43' />
+                  <column datatype='real' name='kart_ort_nakit_avans_payi' ordinal='44' />
+                  <column datatype='string' name='kart_kullanim_grubu' ordinal='45' />
+                  <column datatype='integer' name='buro_kredi_sayisi' ordinal='46' />
+                  <column datatype='integer' name='buro_aktif_kredi_sayisi' ordinal='47' />
+                  <column datatype='real' name='buro_borc_gelir_orani' ordinal='48' />
+                  <column datatype='string' name='dis_borc_grubu' ordinal='49' />
+                  <column datatype='string' name='kredi_acligi_grubu' ordinal='50' />
+                  <column datatype='integer' name='buro_olumsuz_kapanis' ordinal='51' />
+                  <column datatype='integer' name='buro_su_an_gecikmede' ordinal='52' />
+                  <column datatype='real' name='buro_gecikmeli_ay_orani' ordinal='53' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='KPI Müşteri'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='musteri' name='federated.1iu5hxe16osiej1g45fk71svs6fs' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1iu5hxe16osiej1g45fk71svs6fs'>
+            <column caption='Müşteri Sayısı' datatype='integer' name='[Calculation_1661155155857408]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='COUNT([musteri_id])' />
+            </column>
+            <column caption='Musteri Id' datatype='string' name='[musteri_id]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_1661155155857408]' derivation='User' name='[usr:Calculation_1661155155857408:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='subtotal' value='0' />
+            <format attr='border-style' data-class='subtotal' value='none' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='background-color' value='#2a2a2a' />
+            <format attr='border-width' data-class='subtotal' value='0' />
+            <format attr='border-style' data-class='subtotal' value='none' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#2a2a2a' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.1iu5hxe16osiej1g45fk71svs6fs].[usr:Calculation_1661155155857408:qk]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run fontalignment='0'>Müşteri sayısı&#10;&lt;</run>
+                <run fontalignment='0'>[federated.1iu5hxe16osiej1g45fk71svs6fs].[usr:Calculation_1661155155857408:qk]</run>
+                <run fontalignment='0'>&gt;&#10;Kredi başvurusu</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='left' />
+                <format attr='vertical-align' value='center' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{E72F860C-E20E-4C4C-AB19-D5C6399797F7}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='KPI Müşteri'>
+      <cards>
+        <edge name='left'>
+          <strip size='168'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1iu5hxe16osiej1g45fk71svs6fs].[none:Calculation_1661155165020168:qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{B684F6A6-F6F3-4331-8971-48527FBB8177}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='164' name='KPI Müşteri' width='328'>
+      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
+      RU5ErkJggg==
+    </thumbnail>
+  </thumbnails>
+</workbook>
